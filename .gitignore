@@ -1,0 +1,40 @@
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+
+# rspec failure tracking
+.rspec_status
+
+# YARD artifacts
+.yardoc
+_yardoc
+doc/
+rdoc
+
+# bundler
+.bundle
+vendor/bundle
+
+# Mac
+.DS_Store
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+
+EXTRACTION_SUMMARY.md

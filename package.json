@@ -1,0 +1,26 @@
+{
+  "name": "stimulus_rails_datatables",
+  "version": "0.1.0",
+  "description": "Rails integration for DataTables with filters and remote data support",
+  "main": "app/assets/javascripts/stimulus_rails_datatables/app_datatable.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/denmarkmeralpis/stimulus_rails_datatables.git"
+  },
+  "keywords": [
+    "rails",
+    "datatables",
+    "stimulus",
+    "filters",
+    "bootstrap"
+  ],
+  "author": "Den Meralpis",
+  "license": "MIT",
+  "peerDependencies": {
+    "@hotwired/stimulus": "^3.0.0",
+    "datatables.net": "^1.13.0 || ^2.0.0",
+    "datatables.net-bs5": "^1.13.0 || ^2.0.0",
+    "datatables.net-responsive": "^2.4.0 || ^3.0.0",
+    "datatables.net-responsive-bs5": "^2.4.0 || ^3.0.0"
+  }
+}
