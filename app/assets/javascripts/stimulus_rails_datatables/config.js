@@ -1,7 +1,7 @@
 // DataTables Configuration
 // Customize these settings to match your application's needs
 
-export const datatablesConfig = {
+let datatablesConfig = {
   // Language strings for DataTables UI
   language: {
     processing: '<div class="spinner-border"></div><div class="mt-2">Loading...</div>',
@@ -31,4 +31,14 @@ export const datatablesConfig = {
 
   // Length menu options
   lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]]
+}
+
+// Function to let the app override defaults
+export function setDatatablesConfig(overrideConfig) {
+  datatablesConfig = { ...datatablesConfig, ...overrideConfig };
+}
+
+// Function to read the config
+export function getDatatablesConfig() {
+  return datatablesConfig;
 }

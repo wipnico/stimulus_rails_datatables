@@ -3,7 +3,7 @@
 
 import { AppDataTable } from 'stimulus_rails_datatables/app_datatable'
 import { Controller } from '@hotwired/stimulus'
-import { datatablesConfig } from 'stimulus_rails_datatables/config'
+import { getDatatablesConfig } from 'stimulus_rails_datatables/config'
 
 export default class extends Controller {
   static values = {
@@ -20,6 +20,8 @@ export default class extends Controller {
   }
 
   connect() {
+    this.datatablesConfig = getDatatablesConfig();
+
     // try to use saved filters if present, else listen for filters:ready
     const filterEl = document.querySelector('.filter-form[data-filter-root-key]')
     if (filterEl) {
@@ -73,19 +75,14 @@ export default class extends Controller {
   }
 
   initializeDataTable(url = this.sourceValue) {
-    const datatableId = this.idValue
-    const datatableWrapper = document.getElementById(`${datatableId}_wrapper`)
-    let appDataTable = null
+    const datatableId = this.idValue;
+    const datatableWrapper = document.getElementById(`${datatableId}_wrapper`);
+    let appDataTable = null;
 
     if (datatableWrapper === null) {
-      Turbo.cache.exemptPageFromCache()
+      Turbo.cache.exemptPageFromCache();
 
-      // Merge default config with user overrides
-      const config = {
-        language: { ...datatablesConfig.language },
-        layout: { ...datatablesConfig.layout },
-        lengthMenu: datatablesConfig.lengthMenu
-      }
+      const config = this.datatablesConfig; // use injected config
 
       appDataTable = new AppDataTable(`#${datatableId}`, {
         lengthMenu: config.lengthMenu,

@@ -126,6 +126,29 @@ The gem automatically registers Stimulus controllers and imports required JavaSc
 - `datatable` - Main DataTable controller
 - `filter` - Filter controller with state management
 
+## Overriding Default Configuration
+To override the default DataTables configuration, create a file at `app/javascript/datatables_config.js` with your custom settings or run rails generator:
+
+```bash
+rails generate stimulus_rails_datatables:install
+```
+
+Once created, you can pin it in your importmap configuration:
+
+```ruby
+# config/importmap.rb
+pin 'datatables_config', to: 'datatables_config.js'
+```
+
+Finally, import it in your application JavaScript:
+
+```javascript
+// app/javascript/application.js
+import 'datatables_config'
+```
+
+Note: You may need to restart your Rails server for changes to take effect.
+
 ## Dependencies
 
 - Rails >= 7.0

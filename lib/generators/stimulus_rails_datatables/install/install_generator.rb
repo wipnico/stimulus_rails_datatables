@@ -7,10 +7,6 @@ module StimulusRailsDatatables
 
       desc 'Creates StimulusRailsDatatables initializer for your application'
 
-      def copy_initializer
-        template 'stimulus_rails_datatables.rb', 'config/initializers/stimulus_rails_datatables.rb'
-      end
-
       def copy_config
         template 'datatables_config.js', 'app/javascript/datatables_config.js'
       end
@@ -43,6 +39,12 @@ module StimulusRailsDatatables
         say '3. Customize app/javascript/datatables_config.js to override default settings'
         say '4. Create your datatable classes inheriting from StimulusRailsDatatables::BaseDatatable'
         say '5. Use the datatable_for and filter_for helpers in your views'
+        say ''
+        say 'To override the default configuration, edit app/javascript/datatables_config.js and the ff:'
+        say '1. pin it in config/importmap.rb if using importmap:'
+        say "   pin 'datatables_config', to: 'datatables_config.js'"
+        say '2. import and set the config in app/javascript/application.js:'
+        say "   import 'datatables_config'"
         say ''
         say 'For more information, see: https://github.com/denmarkmeralpis/stimulus_rails_datatables'
         say '=' * 80
