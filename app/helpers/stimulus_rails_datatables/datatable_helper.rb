@@ -6,6 +6,7 @@ module StimulusRailsDatatables
       classes = options.fetch(:classes, 'align-middle table w-100')
       searching = options.fetch(:searching, true)
       length_change = options.fetch(:length_change, true)
+      state_save = options.fetch(:state_save, true)
       columns = []
 
       yield DatatableBuilder.new(columns)
@@ -17,7 +18,8 @@ module StimulusRailsDatatables
         datatable_order_value: order.to_json,
         datatable_columns_value: columns.to_json,
         datatable_searching_value: searching,
-        datatable_length_change_value: length_change
+        datatable_length_change_value: length_change,
+        datatable_state_save_value: state_save
       }
 
       content_tag(:div, data: data) do
