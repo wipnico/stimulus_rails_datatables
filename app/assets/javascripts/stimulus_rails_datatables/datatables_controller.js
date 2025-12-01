@@ -108,7 +108,7 @@ export default class extends Controller {
       }
 
       // Add drawCallback to dispatch custom event
-      // appDataTable = new AppDataTable(`#${datatableId}`, options).table
+      appDataTable = new AppDataTable(`#${datatableId}`, options).table
       // if (appDataTable) {
       //  appDataTable.on('draw', () => {
       //     this.element.dispatchEvent(new CustomEvent('datatable:drawn', {
