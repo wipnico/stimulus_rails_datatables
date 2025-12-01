@@ -95,7 +95,6 @@ export default class extends Controller {
         order: this.orderValue,
         columns: this.columnsValue,
         responsive: this.responsiveValue,
-        scrollX: this.responsiveValue ? false : true,
         language: {
           processing: '<div class="spinner-border"></div><div class="mt-2">Loading...</div>',
           lengthMenu: 'show <span class="px-2">_MENU_</span> entries'
@@ -105,10 +104,6 @@ export default class extends Controller {
           topEnd: 'search',
           bottomStart: 'info',
           bottomEnd: 'paging'
-        },
-        // add initComplete to run after DataTables initialization
-        initComplete: function(settings, json) {
-          $('.dataTables_scrollBody thead tr').css({visibility:'collapse'});
         }
       }
 
