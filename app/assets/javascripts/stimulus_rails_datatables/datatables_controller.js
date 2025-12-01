@@ -109,14 +109,19 @@ export default class extends Controller {
 
       // Add drawCallback to dispatch custom event
       appDataTable = new AppDataTable(`#${datatableId}`, options).table
-      // if (appDataTable) {
-      //  appDataTable.on('draw', () => {
-      //     this.element.dispatchEvent(new CustomEvent('datatable:drawn', {
-      //       bubbles: true,
-      //       detail: { table: appDataTable }
-      //     }))
-      //   })
-      // }
+      if (appDataTable) {
+        // ensure column widths/header are synced after initialization to avoid duplicate-looking headers
+        setTimeout(() => {
+          try { appDataTable.columns.adjust(); } catch (e) { /* ignore if not available */ }
+        }, 0)
+
+        appDataTable.on('draw', () => {
+          this.element.dispatchEvent(new CustomEvent('datatable:drawn', {
+            bubbles: true,
+            detail: { table: appDataTable }
+          }))
+        })
+      }
     }
 
     return appDataTable
