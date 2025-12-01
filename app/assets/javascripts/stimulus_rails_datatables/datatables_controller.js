@@ -16,7 +16,9 @@ export default class extends Controller {
     processing: { type: Boolean, default: true },
     pagingType: { type: String, default: 'simple_numbers' },
     searching: { type: Boolean, default: true },
-    lengthChange: { type: Boolean, default: true }
+    lengthChange: { type: Boolean, default: true },
+    scrollX: { type: Boolean, default: false },
+    responsive: { type: Boolean, default: true }
   }
 
   connect() {
@@ -93,7 +95,8 @@ export default class extends Controller {
         pagingType: this.pagingTypeValue,
         order: this.orderValue,
         columns: this.columnsValue,
-        responsive: true,
+        responsive: this.responsiveValue,
+        scrollX: this.scrollXValue,
         language: {
           processing: '<div class="spinner-border"></div><div class="mt-2">Loading...</div>',
           lengthMenu: 'show <span class="px-2">_MENU_</span> entries'
