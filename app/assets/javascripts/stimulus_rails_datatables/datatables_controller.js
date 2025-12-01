@@ -82,6 +82,7 @@ export default class extends Controller {
 
     if (datatableWrapper === null) {
       Turbo.cache.exemptPageFromCache()
+
       const options = {
         lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
         searching: this.searchingValue,
@@ -94,7 +95,7 @@ export default class extends Controller {
         order: this.orderValue,
         columns: this.columnsValue,
         responsive: this.responsiveValue,
-        scrollX: this.responsiveValue? false : true,
+        scrollX: this.responsiveValue ? false : true,
         language: {
           processing: '<div class="spinner-border"></div><div class="mt-2">Loading...</div>',
           lengthMenu: 'show <span class="px-2">_MENU_</span> entries'
@@ -108,14 +109,9 @@ export default class extends Controller {
       }
 
       // Add drawCallback to dispatch custom event
-      appDataTable = new AppDataTable(`#${datatableId}`, options).table
+      const appDataTable = new AppDataTable(`#${datatableId}`, options).table
       if (appDataTable) {
-        // ensure column widths/header are synced after initialization to avoid duplicate-looking headers
-        setTimeout(() => {
-          try { appDataTable.columns.adjust(); } catch (e) { /* ignore if not available */ }
-        }, 0)
-
-        appDataTable.on('draw', () => {
+       appDataTable.on('draw', () => {
           this.element.dispatchEvent(new CustomEvent('datatable:drawn', {
             bubbles: true,
             detail: { table: appDataTable }
