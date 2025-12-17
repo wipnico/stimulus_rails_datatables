@@ -83,9 +83,18 @@ export default class extends Controller {
     if (datatableWrapper === null) {
       Turbo.cache.exemptPageFromCache()
 
+      // Get config - prioritize window.datatablesConfig, fallback to defaults
+      const defaultConfig = getDatatablesConfig()
+      const userConfig = window.datatablesConfig || {}
+      const config = {
+        language: { ...defaultConfig.language, ...(userConfig.language || {}) },
+        layout: { ...defaultConfig.layout, ...(userConfig.layout || {}) },
+        lengthMenu: userConfig.lengthMenu || defaultConfig.lengthMenu
+      }
+
       const responsiveValue = this.responsiveValue
       const options = {
-        lengthMenu: [[10, 25, 50, 100], [10, 25, 50, 100]],
+        lengthMenu: config.lengthMenu,
         searching: this.searchingValue,
         lengthChange: this.lengthChangeValue,
         processing: this.processingValue,
@@ -96,16 +105,8 @@ export default class extends Controller {
         order: this.orderValue,
         columns: this.columnsValue,
         responsive: this.responsiveValue,
-        language: {
-          processing: '<div class="spinner-border"></div><div class="mt-2">Loading...</div>',
-          lengthMenu: 'show <span class="px-2">_MENU_</span> entries'
-        },
-        layout: {
-          topStart: 'pageLength',
-          topEnd: 'search',
-          bottomStart: 'info',
-          bottomEnd: 'paging'
-        },
+        language: config.language,
+        layout: config.layout,
         initComplete: function() {
           if (responsiveValue === false) {
             // Add overflow-x only to the table wrapper (not the whole layout) this is alternative of scrollX

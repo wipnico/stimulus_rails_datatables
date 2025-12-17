@@ -36,9 +36,13 @@ module StimulusRailsDatatables
         say "   application.register('filter', FilterController)"
         say "   window.AppDataTable = AppDataTable"
         say ''
-        say '3. Customize app/javascript/datatables_config.js to override default settings'
-        say '4. Create your datatable classes inheriting from StimulusRailsDatatables::BaseDatatable'
-        say '5. Use the datatable_for and filter_for helpers in your views'
+        say '3. Import app/javascript/datatables_config.js in your application.js:'
+        say ''
+        say "   import './datatables_config'"
+        say ''
+        say '4. Customize app/javascript/datatables_config.js to override default settings'
+        say '5. Create your datatable classes inheriting from StimulusRailsDatatables::BaseDatatable'
+        say '6. Use the datatable_for and filter_for helpers in your views'
         say ''
         say 'To override the default configuration, edit app/javascript/datatables_config.js and the ff:'
         say '1. pin it in config/importmap.rb if using importmap:'
