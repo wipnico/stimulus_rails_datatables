@@ -46,7 +46,8 @@ module StimulusRailsDatatables
             filter_label_key: remote[:label],
             filter_value_key: remote[:value],
             filter_depends_on: depends_on&.to_s,
-            filter_placeholder: remote[:placeholder] || 'Select an option'
+            filter_placeholder: remote[:placeholder] || 'Select an option',
+            filter_set_value: remote[:set_value]
           }
 
           select_options = {

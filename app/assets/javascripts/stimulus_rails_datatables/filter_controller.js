@@ -82,6 +82,7 @@ export default class extends Controller {
     const labelKey = select.dataset.filterLabelKey
     const valueKey = select.dataset.filterValueKey
     const placeholder = select.dataset.filterPlaceholder || 'Select'
+    const set_value = select.dataset.filterSetValue || ''
 
     url = decodeURIComponent(url).replace(/{(\w+)}/g, (_, key) => {
       const input = this.element.querySelector(`[data-filter-field-name='${key}']`)
@@ -100,6 +101,12 @@ export default class extends Controller {
         const option = document.createElement('option')
         option.value = item[valueKey]
         option.textContent = item[labelKey]
+
+        // If set_value matches, mark as selected
+        if (set_value && item[valueKey] == set_value) {
+          option.selected = true
+        }
+
         select.appendChild(option)
       })
 
