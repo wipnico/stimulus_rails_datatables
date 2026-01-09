@@ -55,7 +55,8 @@ $ bundle install
       url: roles_path,
       label: 'name',
       value: 'id',
-      placeholder: 'Select Role'
+      placeholder: 'Select Role',
+      set_value: 1 # If set_value matches, it will be mark as selected
     }
   ) %>
 
